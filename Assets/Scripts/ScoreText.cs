@@ -1,18 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ScoreText : MonoBehaviour
 {
-    // Start is called before the first frame update
+    TMPro.TMP_Text text;
+
     void Start()
     {
-        
+        text = GetComponent<TMPro.TMP_Text>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        text.text = "Score:   " + ScoreManager.Score;
     }
 }
