@@ -4,15 +4,48 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    // Start is called before the first frame update
+    static AudioManager Instance;
+    static AudioSource source;
+
+    public AudioClip[] explosions; 
+    public AudioClip shoot;
+
     void Start()
     {
-        
+        if (!Instance)
+            Instance = this;
+        else 
+        {
+            DestroyImmediate(this.gameObject);
+            return;
+        }
+
+        source = GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public static void PlayOneShot(SFX sfx)
     {
-        
+        switch (sfx)
+        {
+            case SFX.Explosion:
+                int index = Random.Range(0, Instance.explosions.Length - 1);
+                source.PlayOneShot(Instance.explosions[index]);
+                Debug.Log(Instance.explosions.Length);
+                Debug.Log(index);
+                break;
+
+            case SFX.Shoot:
+                source.PlayOneShot(Instance.shoot);
+                break;
+
+            default:
+                break;
+        }
     }
+}
+
+public enum SFX 
+{
+    Explosion,
+    Shoot
 }

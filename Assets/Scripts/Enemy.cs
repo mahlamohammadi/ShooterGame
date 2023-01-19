@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public GameObject explosion;
+    public int score;
 
-    // Update is called once per frame
-    void Update()
+    public void DestroyObject()
     {
-        
+        Instantiate(explosion, transform.position, Quaternion.identity);
+        AudioManager.PlayOneShot(SFX.Explosion);
+        ScoreManager.AddScore(score);
+        gameObject.SetActive(false);
     }
 }
