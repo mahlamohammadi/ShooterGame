@@ -1,1 +1,4 @@
 # ShooterGame
+
+![Screenshot](INFO.jpg)
+
