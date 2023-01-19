@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class Lifetime : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public float lifetime = 5f;
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator Start()
     {
-        
+        yield return new WaitForSeconds(lifetime);
+        Destroy(this.gameObject);
     }
 }
